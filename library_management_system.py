@@ -1,6 +1,5 @@
 class Person:
-    """Base class representing a person."""
-
+   
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -11,28 +10,28 @@ class Person:
 
 
 class Member(Person):
-    """Represents a library member. Inherits from Person."""
+   
 
     def __init__(self, member_id, name, age):
         super().__init__(name, age)
         self.member_id = member_id
-        self.borrowed_books = []  # list of Book objects currently borrowed
+        self.borrowed_books = []  
 
     def borrow_book(self, book):
-        """Add a book to this member's borrowed list."""
+        
         self.borrowed_books.append(book)
 
     def return_book(self, book):
-        """Remove a book from this member's borrowed list."""
+        
         if book in self.borrowed_books:
             self.borrowed_books.remove(book)
 
     def has_borrowed(self, isbn):
-        """Check whether this member currently has a book with the given ISBN."""
+        
         return any(book.isbn == isbn for book in self.borrowed_books)
 
     def display_info(self):
-        """Override display_info to also show member-specific details."""
+        
         print(f"Member ID      : {self.member_id}")
         print(f"Name           : {self.name}")
         print(f"Age            : {self.age}")
@@ -40,29 +39,29 @@ class Member(Person):
 
 
 class Book:
-    """Represents a book in the library. Uses encapsulation for availability."""
+    
 
     def __init__(self, title, author, isbn):
         self.title = title
         self.author = author
         self.isbn = isbn
-        self.__available = True  # private attribute -> encapsulation
+        self.__available = True  
 
     @property
     def available(self):
-        """Getter for availability status."""
+        
         return self.__available
 
     @available.setter
     def available(self, value):
-        """Setter for availability status."""
+        
         if not isinstance(value, bool):
             raise ValueError("Availability must be True or False.")
         self.__available = value
 
     @property
     def status(self):
-        """Read-only property returning a human-readable status."""
+        
         return "Available" if self.__available else "Borrowed"
 
     def display_book(self):
@@ -76,13 +75,12 @@ class Library:
     
 
     def __init__(self):
-        self.books = []      # list of Book objects
-        self.members = []    # list of Member objects
-
+        self.books = []      
+        self.members = []    
     
     @staticmethod
     def is_valid_text(value):
-        """Static method to check a text field is not empty."""
+        
         return isinstance(value, str) and value.strip() != ""
 
     
